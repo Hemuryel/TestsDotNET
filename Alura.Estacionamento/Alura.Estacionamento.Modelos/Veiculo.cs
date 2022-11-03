@@ -94,7 +94,5 @@ namespace Alura.Estacionamento.Modelos
         {
             Proprietario = proprietario;
         }
-
-
     }
 }

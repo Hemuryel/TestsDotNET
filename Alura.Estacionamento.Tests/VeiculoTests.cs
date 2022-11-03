@@ -1,6 +1,8 @@
 using Alura.Estacionamento.Alura.Estacionamento.Modelos;
 using Alura.Estacionamento.Modelos;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Alura.Estacionamento.Tests
@@ -12,7 +14,8 @@ namespace Alura.Estacionamento.Tests
 
     public class VeiculoTests
     {
-        [Fact]
+        [Fact(DisplayName = "Teste nº1")]
+        [Trait("Funcionalidade", "Acelerar")]
         public void TestarVeiculoAcelerar()
         {
             //Arrange
@@ -23,7 +26,8 @@ namespace Alura.Estacionamento.Tests
             Assert.Equal(100, veiculo.VelocidadeAtual);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Teste nº2")]
+        [Trait("Funcionalidade", "Frear")]
         public void TestarVeiculoFrear()
         {
             var veiculo = new Veiculo();
@@ -39,6 +43,12 @@ namespace Alura.Estacionamento.Tests
             //Act
             //Assert
             Assert.Equal(TipoVeiculo.Automovel, veiculo.Tipo);
+        }
+
+        [Fact(DisplayName = "Teste nº3", Skip = "Teste ainda não implementado. Ignorar.")]
+        public void ValidarNomeProprietario()
+        {
+
         }
     }
 }
