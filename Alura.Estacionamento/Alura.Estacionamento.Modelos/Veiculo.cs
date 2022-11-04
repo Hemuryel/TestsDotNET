@@ -84,6 +84,14 @@ namespace Alura.Estacionamento.Modelos
             this.VelocidadeAtual -= (tempoSeg * 15);
         }
 
+        public void AlterarDados(Veiculo veiculadoAlterado)
+        {
+            this.Proprietario = veiculadoAlterado.Proprietario;
+            this.Modelo = veiculadoAlterado.Modelo;
+            this.Largura = veiculadoAlterado.Largura;
+            this.Cor = veiculadoAlterado.Cor;
+        }
+
         //Construtor
         public Veiculo()
         {
@@ -93,6 +101,16 @@ namespace Alura.Estacionamento.Modelos
         public Veiculo(string proprietario) : this()
         {
             Proprietario = proprietario;
+        }
+
+        public override string ToString()
+        {
+            return $"Ficha do veículo:\n " +
+                   $"Tipo {this.Tipo.ToString()}\n" +
+                   $"Proprietário {this.Proprietario}\n" +
+                   $"Modelo {this.Modelo}\n" +
+                   $"Cor {this.Cor}\n" +
+                   $"Placa {this.Placa}\n";
         }
     }
 }

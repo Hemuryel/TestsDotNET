@@ -16,7 +16,7 @@ namespace Alura.Estacionamento.Tests
     {
         [Fact(DisplayName = "Teste nº1")]
         [Trait("Funcionalidade", "Acelerar")]
-        public void TestarVeiculoAcelerar()
+        public void TestarVeiculoAcelerarComParametro10()
         {
             //Arrange
             var veiculo = new Veiculo();
@@ -28,7 +28,7 @@ namespace Alura.Estacionamento.Tests
 
         [Fact(DisplayName = "Teste nº2")]
         [Trait("Funcionalidade", "Frear")]
-        public void TestarVeiculoFrear()
+        public void TestarVeiculoFrearComParametro10()
         {
             var veiculo = new Veiculo();
             veiculo.Frear(10);
@@ -49,6 +49,24 @@ namespace Alura.Estacionamento.Tests
         public void ValidarNomeProprietario()
         {
 
+        }
+
+        [Fact]
+        public void ImprimirFichaVeiculo()
+        {
+            //Arrange
+            var veiculo = new Veiculo();
+            veiculo.Proprietario = "Fulano de Tal";
+            veiculo.Tipo = TipoVeiculo.Automovel;
+            veiculo.Placa = "ZAP-7419";
+            veiculo.Cor = "Verde";
+            veiculo.Modelo = "Fusca";
+
+            //Act
+            string dados = veiculo.ToString();
+
+            //Assert
+            Assert.Contains("Ficha do veículo:", dados);
         }
     }
 }

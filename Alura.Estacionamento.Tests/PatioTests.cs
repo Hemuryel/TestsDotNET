@@ -4,7 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -17,7 +19,7 @@ namespace Alura.Estacionamento.Tests
     //IEnumerable para usar ClassData
     {
         [Fact]
-        public void ValidarFaturamento()
+        public void ValidarFaturamentoDoEstacionamentoComUmVeiculo()
         {
             //Arrange
             var estacionamento = new Patio();
@@ -44,7 +46,7 @@ namespace Alura.Estacionamento.Tests
         [InlineData("André Silva", "ASD-1498", "Preto", "Gol")]
         [InlineData("José Silva", "POL-9242", "Cinza", "Fusca")]
         [InlineData("Maria Silva", "GRD-6524", "Azul", "Opala")]
-        public void ValidarFaturamentoComVariosVeiculos(
+        public void ValidarFaturamentoDoEstacionamentoComVariosVeiculos(
             string proprietario,
             string placa,
             string cor,
@@ -121,5 +123,58 @@ namespace Alura.Estacionamento.Tests
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        [Theory]
+        [InlineData("André Silva", "ASD-1498", "Preto", "Gol")]
+        public void LocalizarVeiculoNoPatioComBaseNaPlaca(string proprietario,
+            string placa,
+            string cor,
+            string modelo)
+        {
+            //Arrange
+            var estacionamento = new Patio();
+
+            var veiculo = new Veiculo();
+            veiculo.Proprietario = proprietario;
+            veiculo.Placa = placa;
+            veiculo.Cor = cor;
+            veiculo.Modelo = modelo;
+            veiculo.Tipo = TipoVeiculo.Automovel;
+
+            estacionamento.RegistrarEntradaVeiculo(veiculo);
+
+            //Act
+            var consultado = estacionamento.PesquisarVeiculo(placa);
+
+            //Assert
+            Assert.Equal(placa, consultado.Placa);
+        }
+
+        [Fact]
+        public void AlterarDadosVeiculoDoProprioVeiculo()
+        {
+            //Arrange
+            var estacionamento = new Patio();
+
+            var veiculo = new Veiculo();
+            veiculo.Proprietario = "José Silva";
+            veiculo.Placa = "ZXC-8524";
+            veiculo.Cor = "Verde";
+            veiculo.Modelo = "Opala";
+            
+            estacionamento.RegistrarEntradaVeiculo(veiculo);
+
+            var veiculoAlterado = new Veiculo();
+            veiculoAlterado.Proprietario = "José Silva";
+            veiculoAlterado.Placa = "ZXC-8524";
+            veiculoAlterado.Cor = "Preto"; //Alterado
+            veiculoAlterado.Modelo = "Opala";
+
+            //Act
+            var alterado = estacionamento.AlterarDadosVeiculo(veiculoAlterado);
+
+            //Assert
+            Assert.Equal(alterado.Cor, veiculoAlterado.Cor);
+        }
     }
 }
