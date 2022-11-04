@@ -5,7 +5,12 @@ VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Estacionamento", "Alura.Estacionamento\Alura.Estacionamento.csproj", "{7CF34F19-0448-47EE-985D-A9824A866065}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alura.Estacionamento.Tests", "Alura.Estacionamento.Tests\Alura.Estacionamento.Tests.csproj", "{418DCBF9-C285-41B8-9BE4-5ED3C6DCC9EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Estacionamento.Tests", "Alura.Estacionamento.Tests\Alura.Estacionamento.Tests.csproj", "{418DCBF9-C285-41B8-9BE4-5ED3C6DCC9EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8DD8CED1-01F6-469F-B9CA-EAEC525466C1}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

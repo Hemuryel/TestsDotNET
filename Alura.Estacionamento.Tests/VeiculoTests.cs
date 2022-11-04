@@ -1,9 +1,11 @@
 using Alura.Estacionamento.Alura.Estacionamento.Modelos;
 using Alura.Estacionamento.Modelos;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Alura.Estacionamento.Tests
 {
@@ -14,12 +16,24 @@ namespace Alura.Estacionamento.Tests
 
     public class VeiculoTests
     {
+        private Veiculo veiculo;
+        public ITestOutputHelper output;
+
+        //setup = preparação do cenário
+        public VeiculoTests(
+            ITestOutputHelper _output)
+        {
+            output = _output;
+            output.WriteLine("Construtor invocado.");
+            veiculo = new Veiculo();
+        }
+
         [Fact(DisplayName = "Teste nº1")]
         [Trait("Funcionalidade", "Acelerar")]
         public void TestarVeiculoAcelerarComParametro10()
         {
             //Arrange
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
             //Act
             veiculo.Acelerar(10);
             //Assert
@@ -55,7 +69,7 @@ namespace Alura.Estacionamento.Tests
         public void ImprimirFichaVeiculo()
         {
             //Arrange
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = "Fulano de Tal";
             veiculo.Tipo = TipoVeiculo.Automovel;
             veiculo.Placa = "ZAP-7419";

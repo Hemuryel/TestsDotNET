@@ -1,5 +1,6 @@
 ﻿using Alura.Estacionamento.Alura.Estacionamento.Modelos;
 using Alura.Estacionamento.Modelos;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,21 +11,34 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
+using Xunit.Sdk;
 
 namespace Alura.Estacionamento.Tests
 {
     // comando para executar no modo texto: dotnet test
 
-    public class PatioTests : IEnumerable<object[]>
+    public class PatioTests : IEnumerable<object[]>, IDisposable
     //IEnumerable para usar ClassData
     {
+        private Veiculo veiculo;
+        public ITestOutputHelper output;
+
+        //setup = preparação do cenário
+        public PatioTests(ITestOutputHelper _output) : base()
+        {
+            output = _output;
+            output.WriteLine("Construtor invocado.");
+            veiculo = new Veiculo();
+        }
+
         [Fact]
         public void ValidarFaturamentoDoEstacionamentoComUmVeiculo()
         {
             //Arrange
             var estacionamento = new Patio();
 
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = "Fulano de Tal";
             veiculo.Tipo = TipoVeiculo.Automovel;
             veiculo.Cor = "Verde";
@@ -55,7 +69,7 @@ namespace Alura.Estacionamento.Tests
             //Arrange
             var estacionamento = new Patio();
 
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = proprietario;
             veiculo.Placa = placa;
             veiculo.Cor = cor;
@@ -72,30 +86,35 @@ namespace Alura.Estacionamento.Tests
             Assert.Equal(2, faturamento);
         }
 
-        [Theory]
-        [ClassData(typeof(PatioTests))]
-        public void ValidarFaturamentoComVariosVeiculosOutraForma(
-            Veiculo modelo)
+        public ITestOutputHelper GetOutput()
         {
-            //Arrange
-            var estacionamento = new Patio();
-
-            var veiculo = new Veiculo();
-            veiculo.Proprietario = modelo.Proprietario;
-            veiculo.Placa = modelo.Placa;
-            veiculo.Cor = modelo.Cor;
-            veiculo.Modelo = modelo.Modelo;
-            veiculo.Tipo = TipoVeiculo.Automovel;
-
-            estacionamento.RegistrarEntradaVeiculo(veiculo);
-            estacionamento.RegistrarSaidaVeiculo(veiculo.Placa);
-
-            //Act
-            double faturamento = estacionamento.TotalFaturado();
-
-            //Assert
-            Assert.Equal(2, faturamento);
+            return output;
         }
+
+        //[Theory]
+        //[ClassData(typeof(PatioTests))] //parou de funcionar, após add construtor com parâmetro
+        //public void ValidarFaturamentoComVariosVeiculosOutraForma(
+        //    Veiculo modelo)
+        //{
+        //    //Arrange
+        //    var estacionamento = new Patio();
+
+        //    //var veiculo = new Veiculo();
+        //    veiculo.Proprietario = modelo.Proprietario;
+        //    veiculo.Placa = modelo.Placa;
+        //    veiculo.Cor = modelo.Cor;
+        //    veiculo.Modelo = modelo.Modelo;
+        //    veiculo.Tipo = TipoVeiculo.Automovel;
+
+        //    estacionamento.RegistrarEntradaVeiculo(veiculo);
+        //    estacionamento.RegistrarSaidaVeiculo(veiculo.Placa);
+
+        //    //Act
+        //    double faturamento = estacionamento.TotalFaturado();
+
+        //    //Assert
+        //    Assert.Equal(2, faturamento);
+        //}
 
         public IEnumerator<object[]> GetEnumerator()
         {
@@ -134,7 +153,7 @@ namespace Alura.Estacionamento.Tests
             //Arrange
             var estacionamento = new Patio();
 
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = proprietario;
             veiculo.Placa = placa;
             veiculo.Cor = cor;
@@ -156,7 +175,7 @@ namespace Alura.Estacionamento.Tests
             //Arrange
             var estacionamento = new Patio();
 
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = "José Silva";
             veiculo.Placa = "ZXC-8524";
             veiculo.Cor = "Verde";
@@ -175,6 +194,11 @@ namespace Alura.Estacionamento.Tests
 
             //Assert
             Assert.Equal(alterado.Cor, veiculoAlterado.Cor);
+        }
+
+        public void Dispose()
+        {
+            output.WriteLine("Dispose invocado");
         }
     }
 }
