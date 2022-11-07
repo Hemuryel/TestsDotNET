@@ -22,6 +22,7 @@ namespace Alura.Estacionamento.Tests
     //IEnumerable para usar ClassData
     {
         private Veiculo veiculo;
+        private Operador operador;
         public ITestOutputHelper output;
 
         //setup = preparação do cenário
@@ -30,6 +31,9 @@ namespace Alura.Estacionamento.Tests
             output = _output;
             output.WriteLine("Construtor invocado.");
             veiculo = new Veiculo();
+
+            operador = new Operador();
+            operador.Nome = "Pedro Fagundes";
         }
 
         [Fact]
@@ -37,6 +41,11 @@ namespace Alura.Estacionamento.Tests
         {
             //Arrange
             var estacionamento = new Patio();
+
+            //Operador operador = new Operador();
+            //operador.Nome = "Pedro Fagundes";
+
+            estacionamento.OperadorPatio = operador;
 
             //var veiculo = new Veiculo();
             veiculo.Proprietario = "Fulano de Tal";
@@ -68,6 +77,8 @@ namespace Alura.Estacionamento.Tests
         {
             //Arrange
             var estacionamento = new Patio();
+
+            estacionamento.OperadorPatio = operador;
 
             //var veiculo = new Veiculo();
             veiculo.Proprietario = proprietario;
@@ -145,13 +156,15 @@ namespace Alura.Estacionamento.Tests
 
         [Theory]
         [InlineData("André Silva", "ASD-1498", "Preto", "Gol")]
-        public void LocalizarVeiculoNoPatioComBaseNaPlaca(string proprietario,
+        public void LocalizarVeiculoNoPatioComBaseNoIdTicket(string proprietario,
             string placa,
             string cor,
             string modelo)
         {
             //Arrange
             var estacionamento = new Patio();
+
+            estacionamento.OperadorPatio = operador;
 
             //var veiculo = new Veiculo();
             veiculo.Proprietario = proprietario;
@@ -163,17 +176,19 @@ namespace Alura.Estacionamento.Tests
             estacionamento.RegistrarEntradaVeiculo(veiculo);
 
             //Act
-            var consultado = estacionamento.PesquisarVeiculo(placa);
+            var consultado = estacionamento.PesquisarVeiculo(veiculo.IdTicket);
 
             //Assert
-            Assert.Equal(placa, consultado.Placa);
+            Assert.Contains("### Ticket Estacionamento Alura ###", consultado.Ticket);
         }
 
         [Fact]
-        public void AlterarDadosVeiculoDoProprioVeiculo()
+        public void AlterarDadosDoProprioVeiculo()
         {
             //Arrange
             var estacionamento = new Patio();
+
+            estacionamento.OperadorPatio = operador;
 
             //var veiculo = new Veiculo();
             veiculo.Proprietario = "José Silva";
