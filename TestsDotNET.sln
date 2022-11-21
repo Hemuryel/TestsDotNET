@@ -3,14 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Estacionamento", "Alura.Estacionamento\Alura.Estacionamento.csproj", "{7CF34F19-0448-47EE-985D-A9824A866065}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Estacionamento.Tests", "Alura.Estacionamento.Tests\Alura.Estacionamento.Tests.csproj", "{418DCBF9-C285-41B8-9BE4-5ED3C6DCC9EB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8DD8CED1-01F6-469F-B9CA-EAEC525466C1}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xUnit", "xUnit", "{4F8FA9ED-E1AC-4A59-9859-A2714782B280}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Estacionamento.Tests", "xUnit\Alura.Estacionamento.Tests\Alura.Estacionamento.Tests.csproj", "{B56BF2C5-FF64-4C79-A603-D66C8DF799A1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Estacionamento", "xUnit\Alura.Estacionamento\Alura.Estacionamento.csproj", "{5E6458D1-C94B-48FB-8242-16B202CEC902}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,17 +20,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7CF34F19-0448-47EE-985D-A9824A866065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7CF34F19-0448-47EE-985D-A9824A866065}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7CF34F19-0448-47EE-985D-A9824A866065}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7CF34F19-0448-47EE-985D-A9824A866065}.Release|Any CPU.Build.0 = Release|Any CPU
-		{418DCBF9-C285-41B8-9BE4-5ED3C6DCC9EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{418DCBF9-C285-41B8-9BE4-5ED3C6DCC9EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{418DCBF9-C285-41B8-9BE4-5ED3C6DCC9EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{418DCBF9-C285-41B8-9BE4-5ED3C6DCC9EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B56BF2C5-FF64-4C79-A603-D66C8DF799A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B56BF2C5-FF64-4C79-A603-D66C8DF799A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B56BF2C5-FF64-4C79-A603-D66C8DF799A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B56BF2C5-FF64-4C79-A603-D66C8DF799A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E6458D1-C94B-48FB-8242-16B202CEC902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E6458D1-C94B-48FB-8242-16B202CEC902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E6458D1-C94B-48FB-8242-16B202CEC902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E6458D1-C94B-48FB-8242-16B202CEC902}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B56BF2C5-FF64-4C79-A603-D66C8DF799A1} = {4F8FA9ED-E1AC-4A59-9859-A2714782B280}
+		{5E6458D1-C94B-48FB-8242-16B202CEC902} = {4F8FA9ED-E1AC-4A59-9859-A2714782B280}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ACFC5B5E-32FB-45AA-8F37-CA36C04C9590}
